@@ -13,12 +13,16 @@ module.exports = {
 };
 
 function find() {
-  return db('students');
+  return db('students')
+    .join('cohorts', 'cohorts.id', 'students.cohort_id')
+    .select('students.id', 'students.name', 'cohorts.name as cohort' );
 };
 
 function findById(id) {
   return db('students')
-    .where({ id })
+    .join('cohorts', 'cohorts.id', 'students.cohort_id')
+    .select('students.id', 'students.name', 'cohorts.name as cohort' )
+    .where({ 'students.id': id })
     .first();
 };
 

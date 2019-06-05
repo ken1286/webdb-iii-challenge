@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
   Cohorts
     .add(req.body)
     .then( cohort => {
-      res.status(201).json(cohort);
+      res.status(201).json({cohort});
     })
     .catch( err => {
       res.status(500).json(err);
